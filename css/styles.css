@@ -1,0 +1,34 @@
+:root {
+  --container-size: 300px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+  align-items: stretch;
+  justify-items: stretch;
+  margin: 0 auto;
+  width: var(--container-size);
+  height: var(--container-size);
+  border: 2px solid red;
+}
+
+#container > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-item {
+  font-size: xx-small;
+  visibility: visible;
+}
