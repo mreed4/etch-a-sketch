@@ -1,5 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&display=swap");
+
 :root {
-  --container-size: 300px;
+  --border-width: 12px;
+  --top-shadow: var(--border-width) solid rgb(132, 16, 20);
+  --bottom-shadow: var(--border-width) solid rgb(222, 27, 35);
 }
 
 * {
@@ -10,25 +14,38 @@
   user-select: none;
 }
 
-#container {
-  display: grid;
-  grid-template-columns: repeat(16, 1fr);
-  grid-template-rows: repeat(16, 1fr);
-  align-items: stretch;
-  justify-items: stretch;
-  margin: 0 auto;
-  width: var(--container-size);
-  height: var(--container-size);
-  border: 2px solid red;
+body {
+  background-color: rgb(184, 23, 29);
 }
 
-#container > div {
+#screen {
+  display: grid;
+  align-items: stretch;
+  justify-items: stretch;
+  margin: 16em auto 0;
+  background-color: gainsboro;
+  border-radius: 1em;
+  border-top: var(--top-shadow);
+  border-right: var(--top-shadow);
+  border-bottom: var(--bottom-shadow);
+  border-left: var(--bottom-shadow);
+
+  /* 
+  // Set in scripts.js
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+  width: var(--container-size);
+  height: var(--container-size);
+  */
+}
+
+.grid-item {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.grid-item {
-  font-size: xx-small;
-  visibility: visible;
+.item-label {
+  font-size: 8px;
+  font-family: "Fira Code", monospace;
 }
