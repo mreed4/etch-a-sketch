@@ -1,14 +1,11 @@
 // Creates the screen
-let baseSize = 4;
-let screenResolution = 8;
-let screenSizeInPixels = 512;
+let baseSize = 64;
+let screenResolution = 1;
 
 let screen = document.querySelector("#screen");
 screen.style.cssText = `
   grid-template-columns: repeat(${baseSize * screenResolution}, 1fr); 
   grid-template-rows: repeat(${baseSize * screenResolution}, 1fr);
-  width: ${screenSizeInPixels}px;
-  height: ${screenSizeInPixels}px;
 `;
 
 let gridItem;
@@ -18,7 +15,7 @@ const createDivs = (baseSize) => {
     gridItem = document.createElement("div");
     screen.appendChild(gridItem);
     gridItem.classList.add("grid-item");
-    gridItem.innerHTML = `<span class="item-label">${i - 1}</span>`;
+    gridItem.innerHTML = `<span class="item-label">${i}</span>`;
   }
 
   changeGridItems();
@@ -54,7 +51,7 @@ const changeGridItems = () => {
   // Adds mouse event to each grid item
   allGridItems.forEach((n) => {
     n.addEventListener("mouseover", () => {
-      n.style.backgroundColor = "rgba(0, 0, 0, 1)";
+      n.style.backgroundColor = "rgba(0, 0, 0, .3)";
     });
   });
 

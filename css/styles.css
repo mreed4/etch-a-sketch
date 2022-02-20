@@ -1,9 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Yanone+Kaffeesatz:wght@200;300;400;600&display=swap");
 
 :root {
   --screen-border-width: 12px;
   --top-shadow: var(--screen-border-width) solid rgb(132, 16, 20);
+  --left-shadow: var(--screen-border-width) solid rgb(170, 20, 25);
   --bottom-shadow: var(--screen-border-width) solid rgb(222, 27, 35);
+  --screen-size: 512px;
 }
 
 * {
@@ -18,15 +20,52 @@ body {
   font-size: 1.1em;
   overflow: hidden;
   background-color: lightslategrey;
+
+  text-align: center;
 }
 
 main {
-  text-align: center;
   z-index: 3;
+}
+
+main > div {
+  /* Contains the device and the settings/desc */
+  width: 1098px;
+  margin: 3em auto;
+  display: grid;
+  grid-template-columns: 768px 1fr;
+  justify-content: space-around;
+}
+
+h1 {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  color: white;
+  text-shadow: -1px -1px 0 rgb(222, 27, 35), 4px 3px 0 rgb(132, 16, 20), 3px 2px 0 rgb(132, 16, 20), 2px 1px 0 rgb(132, 16, 20),
+    1px 0 0 rgb(132, 16, 20);
+  font-size: 250%;
+  font-weight: 600;
+  font-style: italic;
+  margin-bottom: 0.5em;
 }
 
 #etch-a-sketch {
   background-color: rgb(184, 23, 29);
+  padding: 3em 1em 6em;
+  width: 768px;
+  border-radius: 3em;
+  border-top: var(--bottom-shadow);
+  border-right: var(--left-shadow);
+  border-bottom: var(--top-shadow);
+  border-left: var(--left-shadow);
+  border-width: 6px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.6), 0 0 8px rgba(0, 0, 0, 0.4);
+  transform: scale(0.8);
+  transition: transform 450ms ease-out, box-shadow 150ms linear;
+}
+
+#etch-a-sketch:hover {
+  transform: scale(0.85);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3), 0 0 16px rgba(0, 0, 0, 0.2);
 }
 
 #screen {
@@ -35,19 +74,21 @@ main {
   justify-items: stretch;
   margin: 0 auto;
   background-color: gainsboro;
-  border-radius: 16px;
+  border-radius: 1em;
   border-top: var(--top-shadow);
-  border-right: var(--top-shadow);
+  border-right: var(--left-shadow);
   border-bottom: var(--bottom-shadow);
-  border-left: var(--bottom-shadow);
-  z-index: 2;
+  border-left: var(--left-shadow);
+
+  width: var(--screen-size);
+  height: var(--screen-size);
+
+  cursor: crosshair;
 
   /* 
   // Set in scripts.js
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(16, 1fr);
-  width: var(--container-size);
-  height: var(--container-size);
   */
 }
 
@@ -55,17 +96,29 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+
+  /* 
+
+  Troubleshooting
+  
   border: 1px solid gainsboro;
   border-width: 0 1px 1px 0;
   border-color: green;
-  border-width: 0;
-  overflow: hidden;
+  
+  */
 }
 
 .item-label {
-  font-size: 9px;
+  font-size: 3px;
   font-family: "Fira Code", monospace;
   display: none;
+}
+
+#settings {
+  width: 400px;
+  text-align: left;
+  padding-top: 4em;
 }
 
 /*
