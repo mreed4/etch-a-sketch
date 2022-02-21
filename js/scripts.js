@@ -1,5 +1,6 @@
 // Creates the screen
 let userChoice = 16;
+let rainbowMode = false;
 
 const createScreen = () => {
   let sideLength = userChoice;
@@ -26,6 +27,13 @@ const createItems = (totalItems, screen) => {
   changeGridItems(screen);
 };
 
+const getRandomRGB = () => {
+  let randomR = Math.floor(Math.random() * 256);
+  let randomG = Math.floor(Math.random() * 256);
+  let randomB = Math.floor(Math.random() * 256);
+  return [randomR, randomG, randomB];
+};
+
 //
 const changeGridItems = (screen) => {
   let allGridItems = [...screen.children];
@@ -33,7 +41,24 @@ const changeGridItems = (screen) => {
   // Adds mouse event to each grid item
   allGridItems.forEach((n) => {
     n.addEventListener("mouseover", () => {
-      n.style.backgroundColor = "rgba(0, 0, 0, .2)";
+      const getRandomRGB = () => {
+        let randomR = Math.floor(Math.random() * 256);
+        let randomG = Math.floor(Math.random() * 256);
+        let randomB = Math.floor(Math.random() * 256);
+        let rgb = [randomR, randomG, randomB];
+        return rgb;
+      };
+
+      let color = getRandomRGB();
+      let r = color[0];
+      let g = color[1];
+      let b = color[2];
+
+      if (rainbowMode) {
+        n.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 1)`;
+      } else {
+        n.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+      }
     });
   });
 
