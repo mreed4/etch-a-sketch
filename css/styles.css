@@ -6,6 +6,9 @@
   --left-shadow: var(--screen-border-width) solid rgb(170, 20, 25);
   --bottom-shadow: var(--screen-border-width) solid rgb(222, 27, 35);
   --screen-size: 512px;
+  --high-text: -1px -1px 0 rgb(222, 27, 35), 4px 3px 0 rgb(132, 16, 20), 3px 2px 0 rgb(132, 16, 20), 2px 1px 0 rgb(132, 16, 20),
+    1px 0 0 rgb(132, 16, 20);
+  --low-text: -1px -1px 0 rgb(222, 27, 35), 2px 1px 0 rgb(132, 16, 20), 1px 0 0 rgb(132, 16, 20);
 }
 
 * {
@@ -86,60 +89,33 @@ h1 {
   font-size: 110%;
   letter-spacing: 3px;
   font-style: italic;
-  text-shadow: -1px -1px 0 rgb(222, 27, 35), 2px 1px 0 rgb(132, 16, 20), 1px 0 0 rgb(132, 16, 20);
+  text-shadow: var(--low-text);
 }
 
 #etch-a-sketch > div:nth-child(1) > span:nth-child(2) {
   font-family: "Satisfy", cursive;
-  text-shadow: -1px -1px 0 rgb(222, 27, 35), 4px 3px 0 rgb(132, 16, 20), 3px 2px 0 rgb(132, 16, 20), 2px 1px 0 rgb(132, 16, 20),
-    1px 0 0 rgb(132, 16, 20);
+  text-shadow: var(--high-text);
   font-size: 250%;
   font-weight: 400;
   font-style: italic;
 }
 
-#screen {
-  display: grid;
-  background-color: gainsboro;
-  border-radius: 1em;
+#etch-a-sketch > div:nth-child(2) {
   border-top: var(--top-shadow);
   border-right: var(--left-shadow);
   border-bottom: var(--bottom-shadow);
   border-left: var(--left-shadow);
+  border-radius: 1em;
+}
 
+#screen {
+  display: grid;
+  background-color: gainsboro;
+  cursor: crosshair;
+  border: 5px solid gainsboro;
+  border-radius: 5px;
   width: var(--screen-size);
   height: var(--screen-size);
-
-  cursor: crosshair;
-
-  /* 
-  // Set in scripts.js
-  grid-template-columns: repeat(16, 1fr);
-  grid-template-rows: repeat(16, 1fr);
-  */
-}
-
-.grid-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-
-  /* 
-
-  Troubleshooting
-  
-  border: 1px solid gainsboro;
-  border-width: 0 1px 1px 0;
-  border-color: green;
-  
-  */
-}
-
-.item-label {
-  font-size: 3px;
-  font-family: "Fira Code", monospace;
-  display: none;
 }
 
 #settings {
@@ -147,38 +123,15 @@ h1 {
   padding-top: 4em;
 }
 
-/*
-
-h1 {
-  font-family: "Satisfy", cursive;
-  font-size: 200%;
-  display: inline-block;
-  background: linear-gradient(
-    197deg,
-    hsl(37.5, 100%, 45.5%),
-    hsl(50.6, 100%, 50%),
-    hsl(37.5, 100%, 45.5%),
-    hsl(50.6, 100%, 20%),
-    hsl(50.6, 100%, 50%),
-    hsl(50.6, 100%, 20%)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -moz-text-fill-color: transparent;
-  -webkit-text-fill-color: transparent;
-  position: relative;
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
-h1::after {
-  background: none;
-  content: attr(data-text);
-  text-shadow: 1px 1px 0 hsl(50.6, 100%, 50%), -1px 0 0 hsl(50.6, 100%, 50%);
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
+.item-label {
+  font-size: 3px;
+  font-family: "Fira Code", monospace;
+  display: none;
 }
-
-*/

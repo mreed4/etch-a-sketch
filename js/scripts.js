@@ -27,7 +27,6 @@ const createItems = (totalItems, screen) => {
     let gridItem = document.createElement("div");
     screen.appendChild(gridItem);
     gridItem.classList.add("grid-item");
-    // gridItem.innerHTML = `<span class="item-label">${i}</span>`;
   }
 
   changeGridItems(screen);
@@ -39,7 +38,7 @@ const changeGridItems = (screen) => {
 
   // Adds mouse event to each grid item
   allGridItems.forEach((n) => {
-    n.addEventListener("mouseover", () => {
+    n.addEventListener("mouseenter", () => {
       // Rainbow mode
       const getRandomRGB = () => {
         let randomR = Math.floor(Math.random() * 256);
@@ -61,15 +60,17 @@ const changeGridItems = (screen) => {
       }
     });
   });
+
+  resetScreen(allGridItems);
 };
 
-// Makes pink elephants fall from the sky
-const resetGrid = () => {
-  let allGridItems = [...screen.children];
-  allGridItems.forEach((n) => {
-    n.style.backgroundColor = "none";
+const resetScreen = (allGridItems) => {
+  let btn = document.querySelector("#reset-button");
+  btn.addEventListener("click", () => {
+    allGridItems.forEach((n) => {
+      n.style.backgroundColor = "transparent";
+    });
   });
 };
 
-// Magic begins here
 createScreen();
