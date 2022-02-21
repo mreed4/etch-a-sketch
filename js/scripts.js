@@ -1,11 +1,35 @@
 // Values are set by user inputs
 let userChoice = 64;
-let rainbowMode = false;
+let partyMode = false;
 
 // Logging
 console.log(`Length of side: ${userChoice}`);
 console.log(`Total items: ${Math.pow(userChoice, 2)}`);
-console.log(`Rainbow mode: ${rainbowMode ? "on" : "off"}`);
+console.log(`Rainbow mode: ${partyMode ? "on" : "off"}`);
+
+// Party mode off/on
+const togglePartyMode = () => {
+  let rainbowCheckbox = document.getElementById("rainbow-mode");
+
+  rainbowCheckbox.addEventListener("click", () => {
+    if (rainbowCheckbox.checked) {
+      partyMode = true;
+      console.log(`Rainbow mode: ${partyMode ? "on" : "off"}`);
+    } else {
+      partyMode = false;
+      console.log(`Rainbow mode: ${partyMode ? "on" : "off"}`);
+    }
+  });
+};
+
+// Random color generator
+const getRandomRGB = () => {
+  let randomR = Math.floor(Math.random() * 256);
+  let randomG = Math.floor(Math.random() * 256);
+  let randomB = Math.floor(Math.random() * 256);
+  let rgb = [randomR, randomG, randomB];
+  return rgb;
+};
 
 // User can define the grid size
 const userInput = () => {
@@ -17,7 +41,7 @@ const userInput = () => {
     sizeInput.value = "";
     console.log(`Length of side: ${userChoice}`);
     console.log(`Total items: ${Math.pow(userChoice, 2)}`);
-    console.log(`Rainbow mode: ${rainbowMode ? "on" : "off"}`);
+    console.log(`Rainbow mode: ${partyMode ? "on" : "off"}`);
 
     createScreen(userChoice);
   });
@@ -54,21 +78,11 @@ const changeGridItems = (screen) => {
   // Adds mouse event to each grid item
   allGridItems.forEach((n) => {
     n.addEventListener("mouseenter", () => {
-      // Rainbow mode
-      const getRandomRGB = () => {
-        let randomR = Math.floor(Math.random() * 256);
-        let randomG = Math.floor(Math.random() * 256);
-        let randomB = Math.floor(Math.random() * 256);
-        let rgb = [randomR, randomG, randomB];
-        return rgb;
-      };
-
-      let color = getRandomRGB();
-      let r = color[0];
-      let g = color[1];
-      let b = color[2];
-
-      if (rainbowMode) {
+      if (partyMode) {
+        let color = getRandomRGB();
+        let r = color[0];
+        let g = color[1];
+        let b = color[2];
         n.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 1)`;
       } else {
         n.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
@@ -76,18 +90,7 @@ const changeGridItems = (screen) => {
     });
   });
 
-  // Toggle rainbow mode
-  let rainbowCheckbox = document.getElementById("rainbow-mode");
-  rainbowCheckbox.addEventListener("click", () => {
-    if (rainbowCheckbox.checked) {
-      rainbowMode = true;
-      console.log(`Rainbow mode: ${rainbowMode ? "on" : "off"}`);
-    } else {
-      rainbowMode = false;
-      console.log(`Rainbow mode: ${rainbowMode ? "on" : "off"}`);
-    }
-  });
-
+  togglePartyMode();
   resetScreen(allGridItems);
 };
 

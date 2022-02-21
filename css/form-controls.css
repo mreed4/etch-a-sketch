@@ -1,6 +1,9 @@
-/* https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/ */
-
 :root {
+  /* 
+  
+  HTML5 element: range */
+  /* https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/ */
+
   /* RESETS */
   --range-webkit-appearance: none;
   --range-width: 60%;
@@ -13,8 +16,8 @@
   /* CUSTOM */
 
   /* The "dial" */
-  --range-thumb-custom-border: 3px solid gainsboro;
-  --range-thumb-custom-height: 2em;
+  --range-thumb-custom-border: 2px solid gainsboro;
+  --range-thumb-custom-height: 16px;
   --range-thumb-custom-width: var(--range-thumb-custom-height);
   --range-thumb-custom-border-radius: 2em;
   --range-thumb-custom-cursor: pointer;
@@ -28,9 +31,29 @@
   --range-track-custom-background: rgb(59, 68, 76);
   --range-track-custom-background-focus: rgb(59, 68, 76);
   --range-track-custom-border-radius: 1em;
+  --range-track-custom-border-bottom: 1px solid rgba(178, 203, 229, 0.8);
+
+  /* 
+  
+  HTML5 element: checkbox */
+  /* https://codepen.io/bbodine1/pen/DqdMRy */
+
+  /* The "dial" */
+  --checkbox-toggle-custom-height: var(--range-thumb-custom-height);
+  --checkbox-toggle-custom-width: var(--checkbox-toggle-custom-height);
+  --checkbox-toggle-custom-border-radius: var(--range-thumb-custom-border-radius);
+  --checkbox-toggle-custom-border: var(--range-thumb-custom-border);
+  --checkbox-toggle-custom-box-shadow: var(--range-thumb-custom-box-shadow);
+
+  /* The track */
+  --checkbox-track-custom-height: var(--range-track-custom-height);
+  --checkbox-track-custom-background: var(--range-track-custom-background);
+  --checkbox-track-custom-border-bottom: var(--range-track-custom-border-bottom);
 }
 
 /* 
+
+RANGE
 
 RESETS */
 
@@ -63,6 +86,8 @@ input[type="range"]::-ms-track {
 
 /* 
 
+RANGE
+
 BEGIN CUSTOM STYLING */
 
 /* The "dial" */
@@ -78,7 +103,7 @@ input[type="range"]::-webkit-slider-thumb {
   background: var(--range-thumb-custom-background);
   cursor: var(--range-thumb-custom-cursor);
 
-  margin-top: -12px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  margin-top: -6px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
 }
 
 input[type="range"]::-moz-range-thumb {
@@ -109,6 +134,7 @@ input[type="range"]::-webkit-slider-runnable-track {
   cursor: var(--range-track-custom-cursor);
   background: var(--range-track-custom-background);
   border-radius: var(--range-track-custom-border-radius);
+  border-bottom: var(--range-track-custom-border-bottom);
 }
 
 input[type="range"]:focus::-webkit-slider-runnable-track {
@@ -118,27 +144,31 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
 input[type="range"]::-moz-range-track {
   width: var(--range-track-custom-width);
   height: var(--range-track-custom-height);
-  cursor: var(--range-track-custom-cursor);
+  height: var(--range-track-custom-height);
   background: var(--range-track-custom-background);
   border-radius: var(--range-track-custom-border-radius);
+
+  border-bottom: var(--range-track-custom-border-bottom);
 }
 
 /* MS stuff */
 
 input[type="range"]::-ms-track {
-  width: 100%;
-  height: 8.4px;
-  cursor: pointer;
+  width: var(--range-track-custom-width);
+  height: var(--range-track-custom-height);
+  height: var(--range-track-custom-height);
 
   background: transparent;
   border-color: transparent;
-  border-width: 16px 0;
   color: transparent;
+  border-width: 16px 0;
 }
 
 input[type="range"]::-ms-fill-lower {
   background: var(--range-track-custom-background);
   border-radius: var(--range-track-custom-border-radius);
+
+  border-bottom: var(--range-track-custom-border-bottom);
 }
 
 input[type="range"]:focus::-ms-fill-lower {
@@ -148,8 +178,64 @@ input[type="range"]:focus::-ms-fill-lower {
 input[type="range"]::-ms-fill-upper {
   background: var(--range-track-custom-background);
   border-radius: var(--range-track-custom-border-radius);
+
+  border-bottom: var(--range-track-custom-border-bottom);
 }
 
 input[type="range"]:focus::-ms-fill-upper {
   background: var(--range-track-custom-background-focus);
+}
+
+/* 
+
+RANGE
+
+RESETS */
+
+#settings-and-desc > div:nth-child(4) input[type="checkbox"] {
+  visibility: hidden;
+}
+
+/* 
+
+CHECKBOX
+
+BEGIN CUSTOM STYLING */
+
+/* This is the track */
+
+#settings-and-desc > div:nth-child(4) > div:nth-child(2) {
+  width: 2em;
+  height: var(--checkbox-track-custom-height);
+  height: 4px;
+  background: var(--checkbox-track-custom-background);
+  border-bottom: var(--checkbox-track-custom-border-bottom);
+  margin-top: 6px;
+  position: relative;
+  border-radius: 1em;
+}
+
+/* This is the "dial" */
+
+#settings-and-desc > div:nth-child(4) > div:nth-child(2) label {
+  width: var(--checkbox-toggle-custom-width);
+  height: var(--checkbox-toggle-custom-height);
+  border-radius: var(--checkbox-toggle-custom-border-radius);
+  box-shadow: var(--checkbox-toggle-custom-box-shadow);
+  border: var(--checkbox-toggle-custom-border);
+  display: inline-block;
+  transition: left 150ms ease;
+  position: absolute;
+  top: -7px;
+  left: -6px;
+  cursor: pointer;
+  background: white;
+}
+
+#settings-and-desc > div:nth-child(4) > div:nth-child(2) label > span {
+  visibility: hidden;
+}
+
+#settings-and-desc > div:nth-child(4) input[type="checkbox"]:checked + label {
+  left: 1em;
 }
