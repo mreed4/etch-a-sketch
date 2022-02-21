@@ -1,14 +1,30 @@
 // Values are set by user inputs
-let userChoice = 16;
-let rainbowMode = true;
+let userChoice = 64;
+let rainbowMode = false;
 
 // Logging
 console.log(`Length of side: ${userChoice}`);
 console.log(`Total items: ${Math.pow(userChoice, 2)}`);
 console.log(`Rainbow mode: ${rainbowMode ? "on" : "off"}`);
 
+// User can define the grid size
+const userInput = () => {
+  let sizeInput = document.getElementById("grid-size");
+  let submitButton = document.getElementById("submit-button");
+
+  submitButton.addEventListener("click", () => {
+    userChoice = sizeInput.value;
+    sizeInput.value = "";
+    console.log(`Length of side: ${userChoice}`);
+    console.log(`Total items: ${Math.pow(userChoice, 2)}`);
+    console.log(`Rainbow mode: ${rainbowMode ? "on" : "off"}`);
+
+    createScreen(userChoice);
+  });
+};
+
 // Creates the screen
-const createScreen = () => {
+const createScreen = (userChoice) => {
   let sideLength = userChoice;
   let screenMultiplier = 1; // "Resolution" - The higher this is the more detailed the screen will be
   let totalItems = sideLength * screenMultiplier;
@@ -61,6 +77,18 @@ const changeGridItems = (screen) => {
     });
   });
 
+  // Toggle rainbow mode
+  let rainbowCheckbox = document.getElementById("rainbow-mode");
+  rainbowCheckbox.addEventListener("click", () => {
+    if (rainbowCheckbox.checked) {
+      rainbowMode = true;
+      console.log(`Rainbow mode: ${rainbowMode ? "on" : "off"}`);
+    } else {
+      rainbowMode = false;
+      console.log(`Rainbow mode: ${rainbowMode ? "on" : "off"}`);
+    }
+  });
+
   resetScreen(allGridItems);
 };
 
@@ -73,4 +101,5 @@ const resetScreen = (allGridItems) => {
   });
 };
 
-createScreen();
+createScreen(userChoice);
+userInput();

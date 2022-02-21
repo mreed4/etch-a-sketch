@@ -1,0 +1,87 @@
+/* https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/ */
+
+:root {
+  /* RESETS */
+  --range-webkit-appearance: none;
+  --range-width: 100%;
+  --range-background: transparent;
+  --range-outline: none;
+  --range-cursor: pointer;
+  --range-border-color: transparent;
+  --range-color: transparent;
+
+  /* CUSTOM */
+  --range-thumb-custom-border: 3px solid gainsboro;
+  --range-thumb-custom-height: 2em;
+  --range-thumb-custom-width: 2em;
+  --range-thumb-custom-border-radius: 2em;
+  --range-thumb-custom-cursor: pointer;
+  --range-thumb-custom-background: white;
+  --range-thumb-custom-box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+}
+
+/* RESETS */
+
+input[type="range"] {
+  -webkit-appearance: var(--range-webkit-appearance); /* Hides the slider so that custom slider can be made */
+  width: var(--range-width); /* Specific width is required for Firefox. */
+  background: var(--range-background); /* Otherwise white in Chrome */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: var(--range-webkit-appearance);
+}
+
+input[type="range"]:focus {
+  outline: var(--range-outline);
+  /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type="range"]::-ms-track {
+  width: var(--range-width);
+  cursor: var(--range-cursor);
+
+  /* Hides the slider so custom styles can be added */
+  background: var(--range-background);
+  border-color: var(--range-border-color);
+  color: var(--range-color);
+}
+
+/* BEGIN CUSTOM STYLING */
+
+/* Special styling for WebKit/Blink */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: var(--range-webkit-appearance);
+
+  box-shadow: var(--range-thumb-custom-box-shadow);
+  border: var(--range-thumb-custom-border);
+  height: var(--range-thumb-custom-height);
+  width: var(--range-thumb-custom-width);
+  border-radius: var(--range-thumb-custom-border-radius);
+  background: var(--range-thumb-custom-background);
+  cursor: var(--range-thumb-custom-cursor);
+
+  /* margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+/* All the same stuff for Firefox */
+input[type="range"]::-moz-range-thumb {
+  box-shadow: var(--range-thumb-custom-box-shadow);
+  border: var(--range-thumb-custom-border);
+  height: var(--range-thumb-custom-height);
+  width: var(--range-thumb-custom-width);
+  border-radius: var(--range-thumb-custom-border-radius);
+  background: var(--range-thumb-custom-background);
+  cursor: var(--range-thumb-custom-cursor);
+}
+
+/* All the same stuff for IE */
+input[type="range"]::-ms-thumb {
+  box-shadow: var(--range-thumb-custom-box-shadow);
+  border: var(--range-thumb-custom-border);
+  height: var(--range-thumb-custom-height);
+  width: var(--range-thumb-custom-width);
+  border-radius: var(--range-thumb-custom-border-radius);
+  background: var(--range-thumb-custom-background);
+  cursor: var(--range-thumb-custom-cursor);
+}
