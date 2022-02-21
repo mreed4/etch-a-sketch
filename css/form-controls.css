@@ -3,7 +3,7 @@
 :root {
   /* RESETS */
   --range-webkit-appearance: none;
-  --range-width: 100%;
+  --range-width: 80%;
   --range-background: transparent;
   --range-outline: none;
   --range-cursor: pointer;
@@ -11,6 +11,8 @@
   --range-color: transparent;
 
   /* CUSTOM */
+
+  /* The "dial" */
   --range-thumb-custom-border: 3px solid gainsboro;
   --range-thumb-custom-height: 2em;
   --range-thumb-custom-width: 2em;
@@ -18,14 +20,26 @@
   --range-thumb-custom-cursor: pointer;
   --range-thumb-custom-background: white;
   --range-thumb-custom-box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+
+  /* The track the "dial" sits on */
+  --range-track-custom-width: var(--range-width);
+  --range-track-custom-height: 4px;
+  --range-track-custom-cursor: pointer;
+  --range-track-custom-background: hsl(210, 12.2%, 45.3%);
+  --range-track-custom-background-focus: rgb(59, 68, 76);
+  --range-track-custom-border-radius: 1em;
 }
 
-/* RESETS */
+/* 
+
+RESETS */
 
 input[type="range"] {
   -webkit-appearance: var(--range-webkit-appearance); /* Hides the slider so that custom slider can be made */
   width: var(--range-width); /* Specific width is required for Firefox. */
   background: var(--range-background); /* Otherwise white in Chrome */
+  display: block;
+  margin: 1em auto;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -47,9 +61,12 @@ input[type="range"]::-ms-track {
   color: var(--range-color);
 }
 
-/* BEGIN CUSTOM STYLING */
+/* 
 
-/* Special styling for WebKit/Blink */
+BEGIN CUSTOM STYLING */
+
+/* The "dial" */
+
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: var(--range-webkit-appearance);
 
@@ -61,10 +78,9 @@ input[type="range"]::-webkit-slider-thumb {
   background: var(--range-thumb-custom-background);
   cursor: var(--range-thumb-custom-cursor);
 
-  /* margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  margin-top: -12px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
 }
 
-/* All the same stuff for Firefox */
 input[type="range"]::-moz-range-thumb {
   box-shadow: var(--range-thumb-custom-box-shadow);
   border: var(--range-thumb-custom-border);
@@ -75,7 +91,6 @@ input[type="range"]::-moz-range-thumb {
   cursor: var(--range-thumb-custom-cursor);
 }
 
-/* All the same stuff for IE */
 input[type="range"]::-ms-thumb {
   box-shadow: var(--range-thumb-custom-box-shadow);
   border: var(--range-thumb-custom-border);
@@ -84,4 +99,57 @@ input[type="range"]::-ms-thumb {
   border-radius: var(--range-thumb-custom-border-radius);
   background: var(--range-thumb-custom-background);
   cursor: var(--range-thumb-custom-cursor);
+}
+
+/* The track */
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: var(--range-track-custom-width);
+  height: var(--range-track-custom-height);
+  cursor: var(--range-track-custom-cursor);
+  background: var(--range-track-custom-background);
+  border-radius: var(--range-track-custom-border-radius);
+}
+
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: var(--range-track-custom-background-focus);
+}
+
+input[type="range"]::-moz-range-track {
+  width: var(--range-track-custom-width);
+  height: var(--range-track-custom-height);
+  cursor: var(--range-track-custom-cursor);
+  background: var(--range-track-custom-background);
+  border-radius: var(--range-track-custom-border-radius);
+}
+
+/* MS stuff */
+
+input[type="range"]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+
+input[type="range"]::-ms-fill-lower {
+  background: var(--range-track-custom-background);
+  border-radius: var(--range-track-custom-border-radius);
+}
+
+input[type="range"]:focus::-ms-fill-lower {
+  background: var(--range-track-custom-background-focus);
+}
+
+input[type="range"]::-ms-fill-upper {
+  background: var(--range-track-custom-background);
+  border-radius: var(--range-track-custom-border-radius);
+}
+
+input[type="range"]:focus::-ms-fill-upper {
+  background: var(--range-track-custom-background-focus);
 }
