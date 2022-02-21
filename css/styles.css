@@ -20,23 +20,18 @@
   font-weight: normal;
 }
 
-main {
-  width: 1098px;
-  margin: 3em auto;
-}
-
 body {
   font-size: 1.1em;
   overflow: hidden;
   background-color: lightslategrey;
-
   text-align: center;
 }
 
-main > div {
+main {
   /* Contains the device and the settings/desc */
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  width: 1200px;
+  margin: 3em auto;
 }
 
 h1 {
