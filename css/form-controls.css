@@ -15,7 +15,7 @@
   /* The "dial" */
   --range-thumb-custom-border: 3px solid gainsboro;
   --range-thumb-custom-height: 2em;
-  --range-thumb-custom-width: 2em;
+  --range-thumb-custom-width: var(--range-thumb-custom-height);
   --range-thumb-custom-border-radius: 2em;
   --range-thumb-custom-cursor: pointer;
   --range-thumb-custom-background: white;
@@ -25,7 +25,7 @@
   --range-track-custom-width: var(--range-width);
   --range-track-custom-height: 4px;
   --range-track-custom-cursor: pointer;
-  --range-track-custom-background: hsl(210, 12.2%, 45.3%);
+  --range-track-custom-background: rgb(59, 68, 76);
   --range-track-custom-background-focus: rgb(59, 68, 76);
   --range-track-custom-border-radius: 1em;
 }

@@ -26,6 +26,7 @@ body {
   overflow: hidden;
   background-color: lightslategrey;
   text-align: center;
+  font-family: "Raleway", sans-serif;
 }
 
 main {
@@ -33,6 +34,7 @@ main {
   display: flex;
   width: 1200px;
   margin: 3em auto;
+  justify-content: space-between;
 }
 
 h1 {
@@ -41,6 +43,26 @@ h1 {
   color: white;
   font-size: 250%;
   text-shadow: 1px 1px 0 rgb(79, 90, 101);
+  margin-bottom: 0.75em;
+}
+
+h2 {
+  color: white;
+  margin-bottom: 0.75em;
+  text-shadow: 1px 1px 0 rgb(79, 90, 101);
+  font-weight: 200;
+}
+
+p {
+  text-align: left;
+  width: 80%;
+  margin: 0 auto 1em;
+  color: rgb(59, 68, 76);
+}
+
+label {
+  color: rgb(59, 68, 76);
+  font-size: 90%;
 }
 
 #etch-a-sketch {
@@ -115,7 +137,6 @@ h1 {
 }
 
 #settings {
-  text-align: left;
   padding-top: 4em;
 }
 
