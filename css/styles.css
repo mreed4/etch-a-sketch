@@ -41,16 +41,17 @@ h1 {
   font-family: "Raleway", sans-serif;
   font-weight: 200;
   color: white;
-  font-size: 250%;
+  font-size: 300%;
   text-shadow: 1px 1px 0 rgb(79, 90, 101);
   margin-bottom: 0.75em;
 }
 
 h2 {
   color: white;
-  margin-bottom: 0.75em;
+  margin: 0.75em auto;
   text-shadow: 1px 1px 0 rgb(79, 90, 101);
   font-weight: 200;
+  font-size: 200%;
 }
 
 p {
@@ -63,6 +64,13 @@ p {
 label {
   color: rgb(59, 68, 76);
   font-size: 90%;
+}
+
+a,
+a:visited,
+a:active {
+  color: rgb(59, 68, 76);
+  text-decoration: none;
 }
 
 #etch-a-sketch {
@@ -138,6 +146,10 @@ label {
 
 #settings {
   padding-top: 4em;
+}
+
+#buttons {
+  margin: 1em auto 0;
 }
 
 .grid-item {

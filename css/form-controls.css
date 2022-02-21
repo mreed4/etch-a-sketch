@@ -3,7 +3,7 @@
 :root {
   /* RESETS */
   --range-webkit-appearance: none;
-  --range-width: 80%;
+  --range-width: 60%;
   --range-background: transparent;
   --range-outline: none;
   --range-cursor: pointer;
@@ -39,7 +39,7 @@ input[type="range"] {
   width: var(--range-width); /* Specific width is required for Firefox. */
   background: var(--range-background); /* Otherwise white in Chrome */
   display: block;
-  margin: 1em auto;
+  margin: 1.5em auto;
 }
 
 input[type="range"]::-webkit-slider-thumb {
