@@ -1,57 +1,39 @@
 // Creates the screen
-let baseSize = 64;
-let screenResolution = 1;
+let userChoice = 16;
 
-let screen = document.querySelector("#screen");
-screen.style.cssText = `
-  grid-template-columns: repeat(${baseSize * screenResolution}, 1fr); 
-  grid-template-rows: repeat(${baseSize * screenResolution}, 1fr);
-`;
+const createScreen = () => {
+  let sideLength = userChoice;
+  let screenMultiplier = 1; // "Resolution" - The higher this is the more detailed the screen will be
+  let totalItems = sideLength * screenMultiplier;
+  let screen = document.querySelector("#screen");
+  screen.style.cssText = `
+    grid-template-columns: repeat(${totalItems}, 1fr); 
+    grid-template-rows: repeat(${totalItems}, 1fr);
+  `;
 
-let gridItem;
-
-const createDivs = (baseSize) => {
-  for (let i = 1; i <= (baseSize * screenResolution) ** 2; i++) {
-    gridItem = document.createElement("div");
-    screen.appendChild(gridItem);
-    gridItem.classList.add("grid-item");
-    gridItem.innerHTML = `<span class="item-label">${i}</span>`;
-  }
-
-  changeGridItems();
+  createItems(totalItems, screen);
 };
 
-const changeGridItems = () => {
+// Creates items in the screen
+const createItems = (totalItems, screen) => {
+  for (let i = 1; i <= totalItems ** 2; i++) {
+    let gridItem = document.createElement("div");
+    screen.appendChild(gridItem);
+    gridItem.classList.add("grid-item");
+    // gridItem.innerHTML = `<span class="item-label">${i}</span>`;
+  }
+
+  changeGridItems(screen);
+};
+
+//
+const changeGridItems = (screen) => {
   let allGridItems = [...screen.children];
-  let rightSideItems = [];
-  let bottomItems = [];
-
-  let leftTopCorner = 0;
-  let rightTopCorner = baseSize * screenResolution - 1;
-  let rightBottomCorner = Math.pow(baseSize * screenResolution, 2) - 1;
-  let leftBottomCorner = Math.pow(baseSize * screenResolution, 2) - baseSize * screenResolution;
-
-  let gridCorners = [leftTopCorner, rightTopCorner, rightBottomCorner, leftBottomCorner]; // => array of numbers
-  // gridCorners.map((n) => allGridItems[n]).forEach((n) => (n.style.backgroundColor = "green"));
-
-  // Creates array of all elements on right side
-  for (let i = rightTopCorner; i <= allGridItems.length; i += baseSize) {
-    rightSideItems.push(allGridItems[i]);
-  }
-
-  // Creates array of all elements on right side
-  for (let i = leftBottomCorner; i < allGridItems.length; i++) {
-    bottomItems.push(allGridItems[i]);
-  }
-
-  // Removes borders where/as necessary
-  rightSideItems.forEach((n) => (n.style.borderRightWidth = "0"));
-  bottomItems.forEach((n) => (n.style.borderBottomWidth = "0"));
 
   // Adds mouse event to each grid item
   allGridItems.forEach((n) => {
     n.addEventListener("mouseover", () => {
-      n.style.backgroundColor = "rgba(0, 0, 0, .3)";
+      n.style.backgroundColor = "rgba(0, 0, 0, .2)";
     });
   });
 
@@ -84,8 +66,10 @@ const resetGrid = () => {
   let allGridItems = [...screen.children];
   allGridItems.forEach((n) => {
     n.style.backgroundColor = "none";
-    n.style.border = "0";
   });
 };
 
-createDivs(baseSize);
+createScreen();
+
+console.log(`Length of side: ${userChoice}`);
+console.log(`Total items: ${Math.pow(userChoice, 2)}`);

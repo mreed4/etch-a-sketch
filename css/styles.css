@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Yanone+Kaffeesatz:wght@200;300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Raleway:wght@100;200;300;400;500;700&family=Satisfy&display=swap");
 
 :root {
   --screen-border-width: 12px;
@@ -14,6 +14,12 @@
   border: 0;
   box-sizing: border-box;
   user-select: none;
+  font-weight: normal;
+}
+
+main {
+  width: 1098px;
+  margin: 3em auto;
 }
 
 body {
@@ -24,43 +30,34 @@ body {
   text-align: center;
 }
 
-main {
-  z-index: 3;
-}
-
 main > div {
   /* Contains the device and the settings/desc */
-  width: 1098px;
-  margin: 3em auto;
   display: grid;
-  grid-template-columns: 768px 1fr;
-  justify-content: space-around;
+  grid-template-columns: 1fr 1fr;
 }
 
 h1 {
-  font-family: "Yanone Kaffeesatz", sans-serif;
+  font-family: "Raleway", sans-serif;
+  font-weight: 200;
   color: white;
-  text-shadow: -1px -1px 0 rgb(222, 27, 35), 4px 3px 0 rgb(132, 16, 20), 3px 2px 0 rgb(132, 16, 20), 2px 1px 0 rgb(132, 16, 20),
-    1px 0 0 rgb(132, 16, 20);
   font-size: 250%;
-  font-weight: 600;
-  font-style: italic;
-  margin-bottom: 0.5em;
+  text-shadow: 1px 1px 0 rgb(79, 90, 101);
 }
 
 #etch-a-sketch {
   background-color: rgb(184, 23, 29);
-  padding: 3em 1em 6em;
-  width: 768px;
-  border-radius: 3em;
+  padding: 1em 7em 5em;
+  border-radius: 2em;
   border-top: var(--bottom-shadow);
   border-right: var(--left-shadow);
   border-bottom: var(--top-shadow);
   border-left: var(--left-shadow);
-  border-width: 6px;
+  border-width: 4px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.6), 0 0 8px rgba(0, 0, 0, 0.4);
   transform: scale(0.8);
-  transition: transform 450ms ease-out, box-shadow 150ms linear;
+  transition: transform 150ms ease-in-out, box-shadow 150ms ease-in-out;
+  display: grid;
+  justify-content: center;
 }
 
 #etch-a-sketch:hover {
@@ -68,11 +65,41 @@ h1 {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.3), 0 0 16px rgba(0, 0, 0, 0.2);
 }
 
+#etch-a-sketch > div:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  width: var(--screen-size);
+  margin: 0 auto 0.5em;
+  align-items: center;
+}
+
+#etch-a-sketch > div:nth-child(1) > span {
+  color: white;
+  display: inline-block;
+}
+
+#etch-a-sketch > div:nth-child(1) > span:nth-child(1),
+#etch-a-sketch > div:nth-child(1) > span:nth-child(3) {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 110%;
+  letter-spacing: 3px;
+  font-style: italic;
+  text-shadow: -1px -1px 0 rgb(222, 27, 35), 2px 1px 0 rgb(132, 16, 20), 1px 0 0 rgb(132, 16, 20);
+}
+
+#etch-a-sketch > div:nth-child(1) > span:nth-child(2) {
+  font-family: "Satisfy", cursive;
+  text-shadow: -1px -1px 0 rgb(222, 27, 35), 4px 3px 0 rgb(132, 16, 20), 3px 2px 0 rgb(132, 16, 20), 2px 1px 0 rgb(132, 16, 20),
+    1px 0 0 rgb(132, 16, 20);
+  font-size: 250%;
+  font-weight: 400;
+  font-style: italic;
+}
+
 #screen {
   display: grid;
-  align-items: stretch;
-  justify-items: stretch;
-  margin: 0 auto;
   background-color: gainsboro;
   border-radius: 1em;
   border-top: var(--top-shadow);
@@ -116,7 +143,6 @@ h1 {
 }
 
 #settings {
-  width: 400px;
   text-align: left;
   padding-top: 4em;
 }
