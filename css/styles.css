@@ -22,7 +22,7 @@
 }
 
 body {
-  font-size: 1.1em;
+  font-size: 1em;
   overflow: hidden;
   background-color: lightslategrey;
   text-align: center;
@@ -59,6 +59,7 @@ p {
   width: 80%;
   margin: 0 auto 1em;
   color: rgb(59, 68, 76);
+  line-height: 1.3em;
 }
 
 label {
@@ -90,7 +91,7 @@ a:active {
 }
 
 #etch-a-sketch:hover {
-  transform: scale(0.85);
+  transform: scale(0.83);
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.3), 0 0 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -150,17 +151,4 @@ a:active {
 
 #buttons {
   margin: 1em auto 0;
-}
-
-.grid-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.item-label {
-  font-size: 3px;
-  font-family: "Fira Code", monospace;
-  display: none;
 }

@@ -42,7 +42,6 @@ const createItems = (totalItems, screen) => {
   for (let i = 1; i <= totalItems ** 2; i++) {
     let gridItem = document.createElement("div");
     screen.appendChild(gridItem);
-    gridItem.classList.add("grid-item");
   }
 
   changeGridItems(screen);
