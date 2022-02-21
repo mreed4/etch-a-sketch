@@ -1,7 +1,13 @@
-// Creates the screen
+// Values are set by user inputs
 let userChoice = 16;
-let rainbowMode = false;
+let rainbowMode = true;
 
+// Logging
+console.log(`Length of side: ${userChoice}`);
+console.log(`Total items: ${Math.pow(userChoice, 2)}`);
+console.log(`Rainbow mode: ${rainbowMode ? "on" : "off"}`);
+
+// Creates the screen
 const createScreen = () => {
   let sideLength = userChoice;
   let screenMultiplier = 1; // "Resolution" - The higher this is the more detailed the screen will be
@@ -27,20 +33,14 @@ const createItems = (totalItems, screen) => {
   changeGridItems(screen);
 };
 
-const getRandomRGB = () => {
-  let randomR = Math.floor(Math.random() * 256);
-  let randomG = Math.floor(Math.random() * 256);
-  let randomB = Math.floor(Math.random() * 256);
-  return [randomR, randomG, randomB];
-};
-
-//
+// Colors each item
 const changeGridItems = (screen) => {
   let allGridItems = [...screen.children];
 
   // Adds mouse event to each grid item
   allGridItems.forEach((n) => {
     n.addEventListener("mouseover", () => {
+      // Rainbow mode
       const getRandomRGB = () => {
         let randomR = Math.floor(Math.random() * 256);
         let randomG = Math.floor(Math.random() * 256);
@@ -61,32 +61,9 @@ const changeGridItems = (screen) => {
       }
     });
   });
-
-  /*
-  allGridItems.forEach((n) => {
-    n.addEventListener("mouseenter", () => {
-      n.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
-    });
-  });
-
-  allGridItems.forEach((n) => {
-    n.addEventListener("click", () => {
-      n.style.backgroundColor = "rgba(0, 0, 0, 1)";
-    });
-  });
-
-  allGridItems.forEach((n) => {
-    n.addEventListener("mouseleave", () => {
-      if (n.style.backgroundColor === "rgba(0, 0, 0, 1)") {
-        n.style.backgroundColor = "rgba(0, 0, 0, 1)";
-      } else {
-        n.style.backgroundColor = "transparent";
-      }
-    });
-  });
-  */
 };
 
+// Makes pink elephants fall from the sky
 const resetGrid = () => {
   let allGridItems = [...screen.children];
   allGridItems.forEach((n) => {
@@ -94,7 +71,5 @@ const resetGrid = () => {
   });
 };
 
+// Magic begins here
 createScreen();
-
-console.log(`Length of side: ${userChoice}`);
-console.log(`Total items: ${Math.pow(userChoice, 2)}`);
