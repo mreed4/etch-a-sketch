@@ -1,5 +1,5 @@
-// Values are set by user inputs
-let userChoice = 64;
+// Defaults
+let userChoice = 16;
 let partyMode = false;
 
 // Logging
@@ -10,7 +10,7 @@ console.log(`Partymode: ${partyMode ? "on" : "off"}`);
 // Party mode off/on
 const togglePartyMode = () => {
   let partyModeCheckbox = document.getElementById("partymode");
-  let partyModeLabel = document.getElementById("partymode-label");
+  let partyModeLabel = document.getElementById("partymode-pseudo-label");
 
   partyModeCheckbox.addEventListener("click", () => {
     if (partyModeCheckbox.checked) {
@@ -22,14 +22,28 @@ const togglePartyMode = () => {
       let b = color[2];
 
       const partyModeDisco = () => {
-        partyModeLabel.style.cssText = `opacity: 1; font-weight: 300; color: white; text-shadow: 0 0 1px rgba(${r}, ${g}, ${b}, 0.7), 0 0 2px rgba(${r}, ${g}, ${b}, 1), 0 0 12px rgba(${r}, ${g}, ${b}, 1);`;
+        partyModeLabel.style.cssText = `
+        opacity: 1; 
+        font-weight: 300; 
+        color: white; 
+        text-shadow: 0 0 1px rgba(${r}, ${g}, ${b}, 0.7), 0 0 2px rgba(${r}, ${g}, ${b}, 1), 0 0 12px rgba(${r}, ${g}, ${b}, 1);
+        `;
         color = getRandomRGB();
         r = color[0];
         g = color[1];
         b = color[2];
       };
 
-      setInterval(partyModeDisco, 350);
+      let partyModeOn = setInterval(partyModeDisco, 350);
+
+      partyModeCheckbox.addEventListener("click", () => {
+        clearInterval(partyModeOn);
+        partyModeLabel.style.cssText = `
+        opacity: 0.3; 
+        color: initial; 
+        text-shadow: none;
+        `;
+      });
 
       console.log(`Partymode: ${partyMode ? "on" : "off"}`);
     } else {
@@ -44,10 +58,13 @@ const getRandomRGB = () => {
   let randomR = Math.floor(Math.random() * 256);
   let randomG = Math.floor(Math.random() * 256);
   let randomB = Math.floor(Math.random() * 256);
+
   let rgb = [randomR, randomG, randomB];
+
   return rgb;
 };
 
+/* 
 // User can define the grid size
 const userInput = () => {
   let sizeInput = document.getElementById("grid-size");
@@ -63,6 +80,7 @@ const userInput = () => {
     createScreen(userChoice);
   });
 };
+*/
 
 // Creates the screen
 const createScreen = (userChoice) => {
@@ -121,4 +139,3 @@ const resetScreen = (allGridItems) => {
 };
 
 createScreen(userChoice);
-userInput();

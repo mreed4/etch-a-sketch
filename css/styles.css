@@ -38,7 +38,6 @@ main {
 }
 
 h1 {
-  font-family: "Raleway", sans-serif;
   font-weight: 300;
   color: white;
   font-size: 300%;
@@ -62,10 +61,9 @@ p {
 }
 
 label,
-#settings-and-desc > div:nth-child(4) > div:nth-child(1) {
+#partymode-pseudo-label {
   color: rgb(59, 68, 76);
   font-size: 150%;
-  font-weight: 400;
 }
 
 a,
@@ -159,11 +157,42 @@ a:active {
   align-items: center;
 }
 
-#partymode-label {
+#partymode-pseudo-label {
   opacity: 0.3;
   transition: text-shadow 350ms ease-in, color 150ms linear, font-weight 150ms linear, opacity 150ms ease;
 }
 
 #buttons {
   margin: 2em auto 0;
+  display: flex;
+  width: 80%;
+  justify-content: space-evenly;
+}
+
+button {
+  padding: 1em 2em;
+  font-size: 115%;
+  border-radius: 0.5em;
+  cursor: pointer;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 100;
+  font-size: 90%;
+}
+
+#submit-button {
+  border-bottom: var(--top-shadow);
+  border-width: 3px;
+  background-color: rgb(184, 23, 29);
+
+  text-shadow: var(--low-text);
+}
+
+#reset-button {
+  background-color: hsl(210, 14.3%, 47.3%);
+}
+
+#reset-button:hover {
+  color: rgba(0, 0, 0, 0.7);
 }
