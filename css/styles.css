@@ -39,7 +39,7 @@ main {
 
 h1 {
   font-family: "Raleway", sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   color: white;
   font-size: 300%;
   text-shadow: 1px 1px 0 rgb(79, 90, 101);
@@ -50,13 +50,12 @@ h2 {
   color: white;
   margin: 0.75em auto;
   text-shadow: 1px 1px 0 rgb(79, 90, 101);
-  font-weight: 200;
+  font-weight: 300;
   font-size: 200%;
 }
 
 p {
   text-align: left;
-  width: 80%;
   margin: 0 auto 1em;
   color: rgb(59, 68, 76);
   line-height: 1.3em;
@@ -66,7 +65,7 @@ label,
 #settings-and-desc > div:nth-child(4) > div:nth-child(1) {
   color: rgb(59, 68, 76);
   font-size: 150%;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 a,
@@ -158,6 +157,11 @@ a:active {
   width: 60%;
   margin: 0 auto;
   align-items: center;
+}
+
+#partymode-label {
+  opacity: 0.3;
+  transition: text-shadow 350ms ease-in, color 150ms linear, font-weight 150ms linear, opacity 150ms ease;
 }
 
 #buttons {

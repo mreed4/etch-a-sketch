@@ -205,7 +205,7 @@ BEGIN CUSTOM STYLING */
 /* This is the track */
 
 #settings-and-desc > div:nth-child(4) > div:nth-child(2) {
-  width: 2em;
+  width: 1.5em;
   height: var(--checkbox-track-custom-height);
   height: 4px;
   background: var(--checkbox-track-custom-background);
@@ -237,5 +237,5 @@ BEGIN CUSTOM STYLING */
 }
 
 #settings-and-desc > div:nth-child(4) input[type="checkbox"]:checked + label {
-  left: 1em;
+  left: 12px;
 }

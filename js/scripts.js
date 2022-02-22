@@ -5,19 +5,36 @@ let partyMode = false;
 // Logging
 console.log(`Length of side: ${userChoice}`);
 console.log(`Total items: ${Math.pow(userChoice, 2)}`);
-console.log(`Rainbow mode: ${partyMode ? "on" : "off"}`);
+console.log(`Partymode: ${partyMode ? "on" : "off"}`);
 
 // Party mode off/on
 const togglePartyMode = () => {
-  let rainbowCheckbox = document.getElementById("rainbow-mode");
+  let partyModeCheckbox = document.getElementById("partymode");
+  let partyModeLabel = document.getElementById("partymode-label");
 
-  rainbowCheckbox.addEventListener("click", () => {
-    if (rainbowCheckbox.checked) {
+  partyModeCheckbox.addEventListener("click", () => {
+    if (partyModeCheckbox.checked) {
       partyMode = true;
-      console.log(`Rainbow mode: ${partyMode ? "on" : "off"}`);
+
+      let color = getRandomRGB();
+      let r = color[0];
+      let g = color[1];
+      let b = color[2];
+
+      const partyModeDisco = () => {
+        partyModeLabel.style.cssText = `opacity: 1; font-weight: 300; color: white; text-shadow: 0 0 1px rgba(${r}, ${g}, ${b}, 0.7), 0 0 2px rgba(${r}, ${g}, ${b}, 1), 0 0 12px rgba(${r}, ${g}, ${b}, 1);`;
+        color = getRandomRGB();
+        r = color[0];
+        g = color[1];
+        b = color[2];
+      };
+
+      setInterval(partyModeDisco, 350);
+
+      console.log(`Partymode: ${partyMode ? "on" : "off"}`);
     } else {
       partyMode = false;
-      console.log(`Rainbow mode: ${partyMode ? "on" : "off"}`);
+      console.log(`Partymode: ${partyMode ? "on" : "off"}`);
     }
   });
 };
@@ -41,7 +58,7 @@ const userInput = () => {
     sizeInput.value = "";
     console.log(`Length of side: ${userChoice}`);
     console.log(`Total items: ${Math.pow(userChoice, 2)}`);
-    console.log(`Rainbow mode: ${partyMode ? "on" : "off"}`);
+    console.log(`Partymode: ${partyMode ? "on" : "off"}`);
 
     createScreen(userChoice);
   });
