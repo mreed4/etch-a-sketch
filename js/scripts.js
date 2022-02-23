@@ -20,11 +20,15 @@ const getRandomRGB = () => {
   return rgb;
 };
 
+// User defined size of screen
 const changeSize = () => {
   let sizeInput = document.getElementById("grid-size");
+  let sizeScreen = document.getElementById("size-screen");
 
   sizeInput.addEventListener("change", () => {
     userChoice = 2 ** sizeInput.value;
+    sizeScreen.textContent = userChoice;
+    console.log(userChoice);
 
     createScreen(userChoice);
   });
@@ -36,6 +40,8 @@ const createScreen = (userChoice) => {
   let screenMultiplier = 1; // "Resolution" - The higher this is the more detailed the screen will be
   let totalItems = sideLength * screenMultiplier;
   let screen = document.querySelector("#screen");
+  let sizeScreen = document.getElementById("size-screen");
+  sizeScreen.textContent = userChoice;
   screen.style.cssText = `
     grid-template-columns: repeat(${totalItems}, 1fr); 
     grid-template-rows: repeat(${totalItems}, 1fr);
@@ -74,6 +80,7 @@ const changeGridItems = (screen) => {
   });
 
   togglePartyMode();
+  changeSize();
   resetScreen(allGridItems);
 };
 
@@ -135,4 +142,3 @@ const togglePartyMode = () => {
 };
 
 createScreen(userChoice);
-changeSize();

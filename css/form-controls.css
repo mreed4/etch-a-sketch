@@ -6,12 +6,12 @@
 
   /* RESETS */
   --range-webkit-appearance: none;
-  --range-width: 60%;
   --range-background: transparent;
   --range-outline: none;
   --range-cursor: pointer;
   --range-border-color: transparent;
   --range-color: transparent;
+  --range-width: 60%;
 
   /* CUSTOM */
 
@@ -62,7 +62,7 @@ input[type="range"] {
   width: var(--range-width); /* Specific width is required for Firefox. */
   background: var(--range-background); /* Otherwise white in Chrome */
   display: block;
-  margin: 1.5em auto;
+  margin: 1.5em 0;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -192,7 +192,7 @@ RANGE
 
 RESETS */
 
-#settings-and-desc > div:nth-child(4) input[type="checkbox"] {
+input[type="checkbox"] {
   visibility: hidden;
 }
 
@@ -224,7 +224,7 @@ BEGIN CUSTOM STYLING */
   box-shadow: var(--checkbox-toggle-custom-box-shadow);
   border: var(--checkbox-toggle-custom-border);
   display: inline-block;
-  transition: left 150ms ease;
+  /* transition: left 150ms ease; */
   position: absolute;
   top: -7px;
   left: -6px;

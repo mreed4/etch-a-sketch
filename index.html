@@ -37,7 +37,10 @@
 
         <div>
           <label for="grid-size">Grid size</label>
-          <input type="range" id="grid-size" name="grid-size" min="3" max="6" />
+          <div id="range-wrapper">
+            <input type="range" id="grid-size" name="grid-size" min="3" max="6" value="4" />
+            <span id="size-screen"></span>
+          </div>
         </div>
 
         <div class="partymode-wrapper">
