@@ -15,12 +15,12 @@
   <body>
     <main>
       <section id="etch-a-sketch">
-        <div>
-          <span>Magic</span>
-          <span data-text="Etch A Sketch">Etch A Sketch</span>
-          <span>Screen</span>
+        <div class="product-name-wrapper">
+          <span class="second-name product-name-item">Magic</span>
+          <span class="product-name product-name-item" data-text="Etch A Sketch">Etch A Sketch</span>
+          <span class="second-name product-name-item">Screen</span>
         </div>
-        <div>
+        <div class="screen-inset">
           <div id="screen"></div>
         </div>
       </section>
@@ -37,10 +37,10 @@
 
         <div>
           <label for="grid-size">Grid size</label>
-          <input type="range" id="grid-size" name="grid-size" min="1" max="5" />
+          <input type="range" id="grid-size" name="grid-size" min="3" max="6" />
         </div>
 
-        <div>
+        <div class="partymode-wrapper">
           <div id="partymode-pseudo-label">Partymode</div>
           <div>
             <input type="checkbox" id="partymode" name="partymode" />

@@ -2,56 +2,12 @@
 let userChoice = 16;
 let partyMode = false;
 
+/*
 // Logging
 console.log(`Length of side: ${userChoice}`);
 console.log(`Total items: ${Math.pow(userChoice, 2)}`);
 console.log(`Partymode: ${partyMode ? "on" : "off"}`);
-
-// Party mode off/on
-const togglePartyMode = () => {
-  let partyModeCheckbox = document.getElementById("partymode");
-  let partyModeLabel = document.getElementById("partymode-pseudo-label");
-
-  partyModeCheckbox.addEventListener("click", () => {
-    if (partyModeCheckbox.checked) {
-      partyMode = true;
-
-      let color = getRandomRGB();
-      let r = color[0];
-      let g = color[1];
-      let b = color[2];
-
-      const partyModeDisco = () => {
-        partyModeLabel.style.cssText = `
-        opacity: 1; 
-        font-weight: 300; 
-        color: white; 
-        text-shadow: 0 0 1px rgba(${r}, ${g}, ${b}, 0.7), 0 0 2px rgba(${r}, ${g}, ${b}, 1), 0 0 12px rgba(${r}, ${g}, ${b}, 1);
-        `;
-        color = getRandomRGB();
-        r = color[0];
-        g = color[1];
-        b = color[2];
-      };
-
-      let partyModeOn = setInterval(partyModeDisco, 350);
-
-      partyModeCheckbox.addEventListener("click", () => {
-        clearInterval(partyModeOn);
-        partyModeLabel.style.cssText = `
-        opacity: 0.3; 
-        color: initial; 
-        text-shadow: none;
-        `;
-      });
-
-      console.log(`Partymode: ${partyMode ? "on" : "off"}`);
-    } else {
-      partyMode = false;
-      console.log(`Partymode: ${partyMode ? "on" : "off"}`);
-    }
-  });
-};
+*/
 
 // Random color generator
 const getRandomRGB = () => {
@@ -64,23 +20,15 @@ const getRandomRGB = () => {
   return rgb;
 };
 
-/* 
-// User can define the grid size
-const userInput = () => {
+const changeSize = () => {
   let sizeInput = document.getElementById("grid-size");
-  let submitButton = document.getElementById("submit-button");
 
-  submitButton.addEventListener("click", () => {
-    userChoice = sizeInput.value;
-    sizeInput.value = "";
-    console.log(`Length of side: ${userChoice}`);
-    console.log(`Total items: ${Math.pow(userChoice, 2)}`);
-    console.log(`Partymode: ${partyMode ? "on" : "off"}`);
+  sizeInput.addEventListener("change", () => {
+    userChoice = 2 ** sizeInput.value;
 
     createScreen(userChoice);
   });
 };
-*/
 
 // Creates the screen
 const createScreen = (userChoice) => {
@@ -138,4 +86,53 @@ const resetScreen = (allGridItems) => {
   });
 };
 
+// Party mode off/on
+const togglePartyMode = () => {
+  let partyModeCheckbox = document.getElementById("partymode");
+  let partyModeLabel = document.getElementById("partymode-pseudo-label");
+
+  const partyModeInternals = () => {
+    if (partyModeCheckbox.checked) {
+      partyMode = true;
+
+      let color = getRandomRGB();
+      let r = color[0];
+      let g = color[1];
+      let b = color[2];
+
+      const partyModeDisco = () => {
+        partyModeLabel.style.cssText = `
+        opacity: 1; 
+        font-weight: 300; 
+        color: white; 
+        text-shadow: 0 0 1px rgba(${r}, ${g}, ${b}, 0.7), 0 0 2px rgba(${r}, ${g}, ${b}, 1), 0 0 12px rgba(${r}, ${g}, ${b}, 1);
+        `;
+        color = getRandomRGB();
+        r = color[0];
+        g = color[1];
+        b = color[2];
+      };
+
+      let partyModeOn = setInterval(partyModeDisco, 350);
+
+      partyModeCheckbox.addEventListener("click", () => {
+        clearInterval(partyModeOn);
+        partyModeLabel.style.cssText = `
+        opacity: 0.3; 
+        color: initial; 
+        text-shadow: none;
+        `;
+      });
+
+      // console.log(`Partymode: ${partyMode ? "on" : "off"}`);
+    } else {
+      partyMode = false;
+      // console.log(`Partymode: ${partyMode ? "on" : "off"}`);
+    }
+  };
+
+  partyModeCheckbox.addEventListener("click", partyModeInternals);
+};
+
 createScreen(userChoice);
+changeSize();

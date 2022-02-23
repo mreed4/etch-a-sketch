@@ -66,6 +66,11 @@ label,
   font-size: 150%;
 }
 
+#partymode-pseudo-label {
+  opacity: 0.3;
+  transition: text-shadow 350ms ease-in, color 150ms linear, font-weight 150ms linear, opacity 150ms ease;
+}
+
 a,
 a:visited,
 a:active {
@@ -94,7 +99,7 @@ a:active {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.3), 0 0 16px rgba(0, 0, 0, 0.2);
 }
 
-#etch-a-sketch > div:nth-child(1) {
+.product-name-wrapper {
   display: flex;
   justify-content: space-between;
   width: var(--screen-size);
@@ -102,13 +107,12 @@ a:active {
   align-items: center;
 }
 
-#etch-a-sketch > div:nth-child(1) > span {
+.product-name-item {
   color: white;
   display: inline-block;
 }
 
-#etch-a-sketch > div:nth-child(1) > span:nth-child(1),
-#etch-a-sketch > div:nth-child(1) > span:nth-child(3) {
+.second-name {
   font-family: "Raleway", sans-serif;
   text-transform: uppercase;
   font-weight: 500;
@@ -118,7 +122,7 @@ a:active {
   text-shadow: var(--low-text);
 }
 
-#etch-a-sketch > div:nth-child(1) > span:nth-child(2) {
+.product-name {
   font-family: "Satisfy", cursive;
   text-shadow: var(--high-text);
   font-size: 250%;
@@ -126,7 +130,7 @@ a:active {
   font-style: italic;
 }
 
-#etch-a-sketch > div:nth-child(2) {
+.screen-inset {
   border-top: var(--top-shadow);
   border-right: var(--left-shadow);
   border-bottom: var(--bottom-shadow);
@@ -148,18 +152,13 @@ a:active {
   padding-top: 4em;
 }
 
-#settings-and-desc > div:nth-child(4) {
+.partymode-wrapper {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
   width: 60%;
   margin: 0 auto;
   align-items: center;
-}
-
-#partymode-pseudo-label {
-  opacity: 0.3;
-  transition: text-shadow 350ms ease-in, color 150ms linear, font-weight 150ms linear, opacity 150ms ease;
 }
 
 #buttons {
