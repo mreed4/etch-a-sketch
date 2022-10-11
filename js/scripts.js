@@ -25,13 +25,15 @@ const changeSize = () => {
   let sizeInput = document.getElementById("grid-size");
   let sizeScreen = document.getElementById("size-screen");
 
-  sizeInput.addEventListener("change", () => {
+  const setUserChoice = () => {
     userChoice = 2 ** sizeInput.value;
     sizeScreen.textContent = userChoice;
     console.log(userChoice);
 
     createScreen(userChoice);
-  });
+  };
+
+  sizeInput.addEventListener("change", setUserChoice);
 };
 
 // Creates the screen
@@ -41,6 +43,7 @@ const createScreen = (userChoice) => {
   let totalItems = sideLength * screenMultiplier;
   let screen = document.querySelector("#screen");
   let sizeScreen = document.getElementById("size-screen");
+
   sizeScreen.textContent = userChoice;
   screen.style.cssText = `
     grid-template-columns: repeat(${totalItems}, 1fr); 
@@ -64,19 +67,22 @@ const createItems = (totalItems, screen) => {
 const changeGridItems = (screen) => {
   let allGridItems = [...screen.children];
 
+  const drawPixel = () => {
+    if (partyMode) {
+      let color = getRandomRGB();
+      let r = color[0];
+      let g = color[1];
+      let b = color[2];
+      n.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 1)`;
+    } else {
+      n.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+    }
+  };
+
   // Adds mouse event to each grid item
   allGridItems.forEach((n) => {
-    n.addEventListener("mouseenter", () => {
-      if (partyMode) {
-        let color = getRandomRGB();
-        let r = color[0];
-        let g = color[1];
-        let b = color[2];
-        n.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 1)`;
-      } else {
-        n.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
-      }
-    });
+    n.addEventListener("mouseenter", drawPixel);
+    n.removeEventListener("mouseleave", drawPixel);
   });
 
   togglePartyMode();
@@ -86,11 +92,14 @@ const changeGridItems = (screen) => {
 
 const resetScreen = (allGridItems) => {
   let btn = document.querySelector("#reset-button");
-  btn.addEventListener("click", () => {
+
+  const clearAllPixels = () => {
     allGridItems.forEach((n) => {
       n.style.backgroundColor = "transparent";
     });
-  });
+  };
+
+  btn.addEventListener("click", clearAllPixels);
 };
 
 // Party mode off/on
@@ -122,19 +131,18 @@ const togglePartyMode = () => {
 
       let partyModeOn = setInterval(partyModeDisco, 350);
 
-      partyModeCheckbox.addEventListener("click", () => {
+      const resetLabel = () => {
         clearInterval(partyModeOn);
         partyModeLabel.style.cssText = `
         opacity: 0.3; 
         color: initial; 
         text-shadow: none;
         `;
-      });
+      };
 
-      // console.log(`Partymode: ${partyMode ? "on" : "off"}`);
+      partyModeCheckbox.addEventListener("click", resetLabel);
     } else {
       partyMode = false;
-      // console.log(`Partymode: ${partyMode ? "on" : "off"}`);
     }
   };
 
