@@ -69,7 +69,7 @@ const changeGridItems = (screen) => {
 
   // Adds mouse event to each grid item
   allGridItems.forEach((n) => {
-    const drawPixel = () => {
+    const drawPixel = (n) => {
       if (partyMode) {
         let color = getRandomRGB();
         let r = color[0];
