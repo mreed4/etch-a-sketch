@@ -67,20 +67,20 @@ const createItems = (totalItems, screen) => {
 const changeGridItems = (screen) => {
   let allGridItems = [...screen.children];
 
-  const drawPixel = () => {
-    if (partyMode) {
-      let color = getRandomRGB();
-      let r = color[0];
-      let g = color[1];
-      let b = color[2];
-      n.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 1)`;
-    } else {
-      n.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
-    }
-  };
-
   // Adds mouse event to each grid item
   allGridItems.forEach((n) => {
+    const drawPixel = () => {
+      if (partyMode) {
+        let color = getRandomRGB();
+        let r = color[0];
+        let g = color[1];
+        let b = color[2];
+        n.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 1)`;
+      } else {
+        n.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+      }
+    };
+
     n.addEventListener("mouseenter", drawPixel);
     n.removeEventListener("mouseleave", drawPixel);
   });
