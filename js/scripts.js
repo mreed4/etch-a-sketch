@@ -25,15 +25,13 @@ const changeSize = () => {
   let sizeInput = document.getElementById("grid-size");
   let sizeScreen = document.getElementById("size-screen");
 
-  const setUserChoice = () => {
+  sizeInput.addEventListener("change", () => {
     userChoice = 2 ** sizeInput.value;
     sizeScreen.textContent = userChoice;
     console.log(userChoice);
 
     createScreen(userChoice);
-  };
-
-  sizeInput.addEventListener("change", setUserChoice);
+  });
 };
 
 // Creates the screen
@@ -43,7 +41,6 @@ const createScreen = (userChoice) => {
   let totalItems = sideLength * screenMultiplier;
   let screen = document.querySelector("#screen");
   let sizeScreen = document.getElementById("size-screen");
-
   sizeScreen.textContent = userChoice;
   screen.style.cssText = `
     grid-template-columns: repeat(${totalItems}, 1fr); 
@@ -69,7 +66,7 @@ const changeGridItems = (screen) => {
 
   // Adds mouse event to each grid item
   allGridItems.forEach((n) => {
-    const drawPixel = (n) => {
+    n.addEventListener("mouseenter", () => {
       if (partyMode) {
         let color = getRandomRGB();
         let r = color[0];
@@ -79,10 +76,7 @@ const changeGridItems = (screen) => {
       } else {
         n.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
       }
-    };
-
-    n.addEventListener("mouseenter", drawPixel);
-    n.removeEventListener("mouseleave", drawPixel);
+    });
   });
 
   togglePartyMode();
@@ -92,14 +86,11 @@ const changeGridItems = (screen) => {
 
 const resetScreen = (allGridItems) => {
   let btn = document.querySelector("#reset-button");
-
-  const clearAllPixels = () => {
+  btn.addEventListener("click", () => {
     allGridItems.forEach((n) => {
       n.style.backgroundColor = "transparent";
     });
-  };
-
-  btn.addEventListener("click", clearAllPixels);
+  });
 };
 
 // Party mode off/on
@@ -131,18 +122,19 @@ const togglePartyMode = () => {
 
       let partyModeOn = setInterval(partyModeDisco, 350);
 
-      const resetLabel = () => {
+      partyModeCheckbox.addEventListener("click", () => {
         clearInterval(partyModeOn);
         partyModeLabel.style.cssText = `
         opacity: 0.3; 
         color: initial; 
         text-shadow: none;
         `;
-      };
+      });
 
-      partyModeCheckbox.addEventListener("click", resetLabel);
+      // console.log(`Partymode: ${partyMode ? "on" : "off"}`);
     } else {
       partyMode = false;
+      // console.log(`Partymode: ${partyMode ? "on" : "off"}`);
     }
   };
 
